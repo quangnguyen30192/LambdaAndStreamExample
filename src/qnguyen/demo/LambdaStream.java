@@ -55,7 +55,7 @@ public class LambdaStream {
 
         user.useUsername(x -> {
             x += "aaa";
-            return x;
+            return x; // dont do this, keep lamda expression is on only 1 line => if more, create a reference
         });
 
         // all instance method or static method will be converted into streams
@@ -67,18 +67,22 @@ public class LambdaStream {
         final Function<String, String> mapper3 = x -> x.toLowerCase();
         final Function<String, String> mapper4 = String::toLowerCase; // String : instance variable not String class
 
+        // using method reference when parameter is considered as a target
         final Function<User, String> mapper6 = x -> x.checkString();
         final Function<User, String> mapper5 = User::checkString; // User : instance variable not User class
+
 
         final Consumer<User> consumer5 = x -> x.checkUser();
         final Consumer<User> consumer7 = User::checkUser; // User : instance variable not User class
         final Consumer<User> consumer6 = User::checkString; // User : instance variable not User class: su dung nhu input
 
         // pass by static method
+        // using method reference when parameter is argument of static method
         final Consumer<Integer> consumer1 = x -> System.out.print(x);
         final Consumer<Integer> consumer2 = System.out::print; // static method having one input param returns void
         final Consumer<Integer> consumer8 = x -> user.checkUser();
 //        Consumer<Integer> consumer12 = user::checkString; // can not because of mismatch params
+        // using method reference when parameter is argument of instance method
         final Consumer<Integer> consumer11 = x -> user.checkUserInt(x);
         final Consumer<Integer> consumer10 = user::checkUserInt;
 
@@ -95,7 +99,8 @@ public class LambdaStream {
         System.out.print(stringBuilder.toString());
 
         final int sum = listString.stream()
-                                  .filter(x -> x.equalsIgnoreCase("a") || x.equalsIgnoreCase("b"))
+                                  .filter(x -> x.equalsIgnoreCase("a") ||
+                                               x.equalsIgnoreCase("b")) // => method reference ?
                                   .mapToInt(x -> "b".equalsIgnoreCase(x) ? 1 : 0)
                                   .sum();
         System.out.print(sum);
@@ -141,8 +146,21 @@ public class LambdaStream {
         System.out.println("Max: " + max.get());
 
         final Integer total = integers.stream()
-                                      .reduce(0, (x, y) -> x + y);
+                                      // the order is the same x, y => x + y => be able to apply method reference
+                                      // if the order is y, x => x + y => you can not apply method reference
+                                      //.mapToInt(x -> x).sum();
+                                      //.reduce(0,  lamda (x, y) -> x + y)
+                                      .reduce(0, Integer::sum);
+
+
         System.out.println("Total: " + total);
+
+        integers.stream()
+                //.map(x -> String.valueOf(x))
+                .map(String::valueOf)
+                // .reduce("", (totalString, x) -> totalString.concat(x));
+                // using method reference when 2 params. 1 param is target and 1 param is argument and they are in the same order
+                .reduce("", String::concat);
 
         // collect to other collection
         final Set<Integer> set = integers.stream()
