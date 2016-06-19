@@ -17,6 +17,10 @@ public class InfiniteStream {
             + parameter as a target
             + 2 parameters as arguments
             + 2 parameters, one as target and one as parameter
+            + return a new object, call constructor
+             Set<Person> rosterSetLambda = transferElements(roster, () -> new HashSet<>());
+             => Set<Person> rosterSetLambda = transferElements(roster, HashSet::new);
+
        - Function composition
        - Parallelizing it
        - lambdas are cool, but streams are awesome
