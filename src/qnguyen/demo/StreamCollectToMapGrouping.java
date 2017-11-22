@@ -2,6 +2,8 @@ package qnguyen.demo;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 enum Gender {
@@ -17,20 +19,22 @@ public class StreamCollectToMapGrouping {
         List<Person> persons = createPersons();
 
         // create a map where the key is name and value is that person
-        persons.stream()
-               .collect(Collectors.toMap(person -> String.format("%s-%s", person.getName(), person.getId()),
-                                         person -> person));
+        final Map<String, Person> map1 = persons.stream()
+                                                   .collect(Collectors.toMap(person -> String.format("%s-%s",
+                                                                                                     person.getName(),
+                                                                                                     person.getId()),
+                                                                             Function.identity())); // Person -> Person
 
         // create a map where the key is name and value is all people of that name (it's like grouping)
-        persons.stream()
-               .collect(Collectors.groupingBy(Person::getName));
+        final Map<String, List<Person>> map2 = persons.stream()
+                                                         .collect(Collectors.groupingBy(Person::getName));
         // please do in this way :) otherwise you must do couple things making code messy
 
         // create a map where the key is name and value is all the age of people with that name
-        persons.stream()
-               .collect(Collectors.groupingBy(Person::getName,
-                                              Collectors.mapping(Person::getAge,
-                                                                 Collectors.toList())));
+        final Map<String, List<Integer>> map3 = persons.stream()
+                                                          .collect(Collectors.groupingBy(Person::getName,
+                                                                                         Collectors.mapping(Person::getAge,
+                                                                                                            Collectors.toList())));
 
 
     }
