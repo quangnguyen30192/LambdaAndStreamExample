@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class HighOrderFunction {
 
     // isPrime
-    private boolean isPrime(int number) {
+    private static boolean isPrime(int number) {
         return number > 1 && IntStream.range(2, number)
                                       .noneMatch(i -> number % i == 0);
         //  instead of using for loop and then some garbage variable
@@ -35,5 +36,13 @@ public class HighOrderFunction {
         // check the 2nd key of scores, if the score exists in the new map -> get the list and add one more name, otherwise
         // create a new key with the value is a list containing 1 element is the name
         ///... fucking verbose. now we have a concise and clear code
+    }
+
+    private double totalSQRT(int n, int k) {
+        return Stream.iterate(n, e -> e + 1)
+                     .filter(HighOrderFunction::isPrime)
+                     .mapToDouble(Math::sqrt)
+                     .limit(k)
+                     .sum();
     }
 }
