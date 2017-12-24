@@ -1,4 +1,4 @@
-package qnguyen.demo;
+package qnguyen.demo.lambda;
 
 import java.awt.*;
 import java.util.function.Function;

@@ -1,4 +1,4 @@
-package qnguyen.demo;
+package qnguyen.demo.lambda;
 
 /**
  * Created by QuangNguyen on 19/06/2016.
