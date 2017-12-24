@@ -54,6 +54,8 @@ enum Strategy implements MatchPlay {
     public void play() {
         System.out.println("Default Method for enum");
     }
+
+    // could be implement an interface or it's able to have its own abstract method then implements
 }
 
 interface MatchPlay {
