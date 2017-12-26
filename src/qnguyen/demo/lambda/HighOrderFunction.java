@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * is a function that takes functions as parameters and return to another function
+ */
 public class HighOrderFunction {
 
     // isPrime
