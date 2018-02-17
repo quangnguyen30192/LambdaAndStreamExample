@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * in java generic - PECS stands for Producer extends Consumer super
+ * in java generic - PECS stands for Producer extends Consumer super, apply only on collection context
  */
 public class PECS {
 
