@@ -1,5 +1,6 @@
 package qnguyen.demo.chainningmt;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,12 +37,12 @@ class ObjChainning {
   }
 
   public static void main(String[] args) {
-    ObjChainning objChainning = new ObjChainning(List.of(new Task("1"),
-                                                         new Task("2"),
-                                                         new Task("3"),
-                                                         new Task("4"),
-                                                         new Task("5"),
-                                                         new Task("6")));
+    ObjChainning objChainning = new ObjChainning(Arrays.asList(new Task("1"),
+            new Task("2"),
+            new Task("3"),
+            new Task("4"),
+            new Task("5"),
+            new Task("6")));
 
     objChainning.processChainning(0);
 
