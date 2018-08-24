@@ -1,4 +1,4 @@
-package qnguyen.demo.misc;
+package qnguyen.demo.designpattern;
 
 import java.util.ArrayList;
 import java.util.List;

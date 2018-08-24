@@ -1,4 +1,4 @@
-package qnguyen.demo.misc;
+package qnguyen.demo.designpattern;
 
 public class StrategyPatternEnum {
     public static void main(String[] args) {

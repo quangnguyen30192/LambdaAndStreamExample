@@ -1,4 +1,4 @@
-package qnguyen.demo.misc;
+package qnguyen.demo.designpattern;
 
 public class StatePatternDemo {
     public static void main(String[] args) {
